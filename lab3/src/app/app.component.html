@@ -1,0 +1,52 @@
+<div style="text-align:center">
+  Enter name of the application: <input type="text" [(ngModel)]="title"/>
+  <h1>Welcome to {{ title }}!</h1>
+  <img
+    width="300"
+    alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+  />
+</div>
+<div style="text-align:center">
+  <p>Number of messages = {{ messages.length}}</p>
+
+  <div>
+    <button [disabled]="disableNewMessage"  (click)="onSendMessage()">Send Message</button>
+  </div>
+  
+  <p>First message is from {{messages[0].sender}}: {{messages[0].message}}</p>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <ul>
+      <li *ngFor="let currentMessage of messages">
+        {{currentMessage.sender}}: {{currentMessage.message}}
+      </li>
+    </ul>
+  </div>
+
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <h2>Athletes</h2>
+      <div *ngFor="let athlete of listOfAthletes">
+        <span>* {{athlete.name}} ({{athlete.sport}}) 
+          <span *ngIf="athlete.active else elseSpan">is active</span>
+          <ng-template #elseSpan>is not active</ng-template>
+        </span>
+      </div>
+  </div>
+
+  <h2>Add an athlete</h2>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <form action="/action_page.php" method="get">
+      <label for="name">Athlete name:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="newAthleteName"><br><br>
+      <label for="lname">Sport name:</label>
+      <input type="text" id="sport" name="sport" [(ngModel)]="newAthleteSport"><br><br>
+      <label for="name">Athlete Active?:</label>
+      <select name="isActive" [(ngModel)]="activeStatus">
+        <option value="active">active</option>
+        <option value="notActive">not active</option>
+      </select>
+      <input type="submit" value="Submit" (click)="addAthlete()">
+    </form>
+  </div>
+
+</div>
